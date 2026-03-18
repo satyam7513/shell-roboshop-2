@@ -4,7 +4,7 @@ ami_id="ami-0220d79f3f480ecf5"
 sg_id="sg-02b2c0c8175091ab8"
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
 ZONE_ID="Z04626924Z2WBLM8PDBQ"
-DOMAIN_NAME="somaraju.online"
+DOMAIN_NAME="kimidi.site"
 
 #for instance in ${INSTANCES[@]}
 for instance in $@
