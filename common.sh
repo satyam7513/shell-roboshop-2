@@ -95,6 +95,26 @@ python_setup(){
     VALIDATE $? "Copying $app_name service"
 }
 
+
+golang_setup() {
+    
+    dnf install golang -y &>>$LOG_FILE
+    VALIDATE $? "Installing Golang"
+
+    if [ ! -f go.mod ]; then
+        go mod init $APP_NAME &>>$LOG_FILE
+        VALIDATE $? "Initializing Go Module"
+   	else
+    echo "go.mod already exists... SKIPPING" | tee -a $LOG_FILE
+    fi
+
+    go mod tidy &>>$LOG_FILE
+    VALIDATE $? "Downloading Dependencies"
+
+    go build &>>$LOG_FILE
+    VALIDATE $? "Building $APP_NAME Service"
+}
+
 # validate functions takes input as exit status, what command they tried to install
 VALIDATE(){
     if [ $1 -eq 0 ]
