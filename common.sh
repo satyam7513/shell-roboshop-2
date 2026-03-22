@@ -60,6 +60,7 @@ systemd_setup(){
 }
 
 
+
 check_root(){
 
     # check the user has root priveleges or not
@@ -70,6 +71,17 @@ check_root(){
     else
         echo "You are running with root access" | tee -a $LOG_FILE
     fi
+}
+
+maven_setup(){
+    dnf install maven -y &>>$LOG_FILE
+    VALIDATE $? "Installing Maven and Java"
+
+    mvn clean package  &>>$LOG_FILE
+    VALIDATE $? "Packaging the shipping application"
+
+    mv target/shipping-1.0.jar shipping.jar  &>>$LOG_FILE
+    VALIDATE $? "Moving and renaming Jar file"
 }
 
 
