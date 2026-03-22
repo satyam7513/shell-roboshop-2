@@ -104,8 +104,6 @@ golang_setup() {
     if [ ! -f go.mod ]; then
         go mod init $APP_NAME &>>$LOG_FILE
         VALIDATE $? "Initializing Go Module"
-   	else
-    echo "go.mod already exists... SKIPPING" | tee -a $LOG_FILE
     fi
 
     go mod tidy &>>$LOG_FILE
