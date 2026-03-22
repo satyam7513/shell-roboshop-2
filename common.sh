@@ -101,10 +101,9 @@ golang_setup() {
     dnf install golang -y &>>$LOG_FILE
     VALIDATE $? "Installing Golang"
 
-    cd /app
-
+    
     if [ ! -f go.mod ]; then
-        go mod init $APP_NAME &>>$LOG_FILE
+        go mod init $app_name &>>$LOG_FILE
         VALIDATE $? "Initializing Go Module"
     fi
 
@@ -112,7 +111,7 @@ golang_setup() {
     VALIDATE $? "Downloading Dependencies"
 
     go build &>>$LOG_FILE
-    VALIDATE $? "Building $APP_NAME Service"
+    VALIDATE $? "Building $app_name Service"
 }
 
 # validate functions takes input as exit status, what command they tried to install
