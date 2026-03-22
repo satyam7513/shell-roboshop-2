@@ -84,6 +84,16 @@ maven_setup(){
     VALIDATE $? "Moving and renaming Jar file"
 }
 
+python_setup(){
+    dnf install python3 gcc python3-devel -y &>>$LOG_FILE
+    VALIDATE $? "Install Python3 packages"
+
+    pip3 install -r requirements.txt &>>$LOG_FILE
+    VALIDATE $? "Installing dependencies"
+
+    cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$LOG_FILE
+    VALIDATE $? "Copying payment service"
+}
 
 # validate functions takes input as exit status, what command they tried to install
 VALIDATE(){
