@@ -91,8 +91,8 @@ python_setup(){
     pip3 install -r requirements.txt &>>$LOG_FILE
     VALIDATE $? "Installing dependencies"
 
-    cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$LOG_FILE
-    VALIDATE $? "Copying payment service"
+    cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service &>>$LOG_FILE
+    VALIDATE $? "Copying $app_name service"
 }
 
 # validate functions takes input as exit status, what command they tried to install
