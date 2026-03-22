@@ -101,6 +101,8 @@ golang_setup() {
     dnf install golang -y &>>$LOG_FILE
     VALIDATE $? "Installing Golang"
 
+    cd /app
+
     if [ ! -f go.mod ]; then
         go mod init $APP_NAME &>>$LOG_FILE
         VALIDATE $? "Initializing Go Module"
